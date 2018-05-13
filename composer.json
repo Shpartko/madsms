@@ -1,0 +1,29 @@
+{
+    "name":    "shpartko/madsms",
+    "description": "Send sms via random providers",
+    "type":    "library",
+    "license": "MIT",
+    "authors": [
+        {"name": "Eugene Shpartko", "email": "3300101@gmail.com"}
+    ],
+    "require": {
+        "php": "^7.1",
+    	"laravel/framework": "^5.5",
+        "illuminate/support": "^5.5",
+	"fzaninotto/faker": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shpartko\\Madsms\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Shpartko\\Madsms\\MadServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",	
+    "prefer-stable": true
+}
