@@ -34,20 +34,29 @@
 					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 						<div class="card mb-3">
 						  <div class="card-body">
-						    <h5 class="card-title">{{ $result->getPhone() }}</h5>
-						    <h6 class="card-subtitle mb-2 text-muted">id: {{ $result->message_id }} <span class="badge badge-dark float-sm-right">@lang('madsms::msg.status-'.$result->status)</span> </h6>
+						    <h5 class="card-title">
+						    	{{ $result->getPhone() }}
+						    </h5>
+						    <h6 class="card-subtitle mb-2 text-muted">
+						    	id: {{ $result->reply()->getId() }}
+						    	<span class="badge @if($result->reply()->getResult()==1) badge-dark @else badge-warning @endif float-sm-right">
+						    		@lang('madsms::msg.status-'.$result->reply()->getResult())
+						    	</span>
+						    </h6>
 						    <p class="card-text">
-						    	{{ $result->message }}
+						    	{{ $result->getMessage() }}
 						    </p>
 						  </div>
 						  <ul class="list-group list-group-flush">
 						    <li class="list-group-item">
-						    	<span class="badge badge-success float-sm-right">{{ $result->parts }} {{ $result->getMessageType() }}</span>
-						    	@lang('madsms::msg.type-'.$result->type)
+						    	<span class="badge badge-success float-sm-right">
+						    		{{ $result->reply()->getParts() }} {{ $result->getMessageType() }}
+						    	</span>
+						    	@lang('madsms::msg.type-'.$result->reply()->getType())
 						    </li>
 						    <li class="list-group-item">
-						    	<img class="provider_logo" src="{{ $result->gateway_logo }}">
-						    	{{ $result->gateway_name }}
+						    	<img class="provider_logo" src="{{ $result->reply()->getGatewayLogo() }}">
+						    	{{ $result->reply()->getGatewayName() }}
 						    </li>
 						  </ul>
 						</div>
