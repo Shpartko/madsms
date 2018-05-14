@@ -4,13 +4,13 @@ return [
     'title' => 'MadSMS',
     'h1' => 'MadSMS results page:',
 
-    'status-send' => 'Send compete',
-    'status-fail' => 'Send error',
-    'status-bad' =>  'Bad format or phone',
+    'status-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_UNPROCESSED =>  'Unprocessed',
+    'status-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_SEND => 'Send compete',
+    'status-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_FAIL => 'Send error',
 
-    'type-undefined' => 'Undefined format',
-    'type-standart' => 'Standart message',
-    'type-unconventional' => 'Unconventional message',
+    'type-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_TYPE_UNDEFINED => 'Undefined format',
+    'type-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_TYPE_STANDART => 'Standart message',
+    'type-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_TYPE_EXTENDED => 'Unconventional message',
 
     'no-results' => 'No one message was sended.',
 

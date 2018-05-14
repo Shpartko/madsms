@@ -4,13 +4,13 @@ return [
     'title' => 'MadSMS',
     'h1' => 'Результат работы MadSMS:',
 
-    'status-send' => 'Отправлено',
-    'status-fail' => 'Ошибка',
-    'status-bad' =>  'Ошибка формата или номера',
+    'status-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_UNPROCESSED =>  'Не обработано',
+    'status-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_SEND => 'Отправлено',
+    'status-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_FAIL => 'Ошибка',
 
-	'type-undefined' => 'Формат сообщения не определён',
-    'type-standart' => 'Стандартное SMS',
-    'type-unconventional' => 'Не стандартное SMS, возможно MMS',
+    'type-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_TYPE_UNDEFINED => 'Неизвестный формат',
+    'type-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_TYPE_STANDART => 'Стандартное SMS',
+    'type-'.Shpartko\Madsms\Contracts\ReplyInterface::MESSAGE_TYPE_EXTENDED => 'Не стандартное SMS, возможно MMS',
 
     'no-results' => 'Ни одно сообщение не было отправлено. Очередь сообщений пуста.',
 
