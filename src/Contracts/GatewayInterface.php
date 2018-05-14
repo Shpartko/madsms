@@ -11,6 +11,7 @@ use Shpartko\Madsms\Contracts\MessageInterface;
  */
 interface GatewayInterface
 {
+	public function isCorrectMessage(MessageInterface $message): bool;
 	public function send(MessageInterface $message): MessageInterface;
 	public function getGatewayName(): string;
 	public function getGatewayLogo(): string;
