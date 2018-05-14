@@ -9,10 +9,10 @@ namespace Shpartko\Madsms\Traits;
  */
 trait CheckMessage
 {
-    public function canMessageSend(): bool
+    public function isCorrectMessage(): bool
     {
-    	// Make bad format for message for 1 of 4 times (for tests in dev mode)
-    	if ((env('APP_ENV')!='production') && (rand(0,3)==0)) {
+    	// Make bad format for message for 1 of 5 times (for tests in dev mode)
+    	if ((env('APP_ENV')!='production') && (rand(0,4)==0)) {
     		return false;
     	}
 
