@@ -9,8 +9,8 @@ return [
     */
 
     'gateways' => [
-    	\Shpartko\Madsms\Gateway\Vodafone::class,
-    	\Shpartko\Madsms\Gateway\Lifecell::class,
+        \Shpartko\Madsms\Gateway\Vodafone::class,
+        \Shpartko\Madsms\Gateway\Lifecell::class,
         \Shpartko\Madsms\Gateway\Kyivstar::class,
     ],
 
