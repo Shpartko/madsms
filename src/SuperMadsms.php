@@ -7,7 +7,6 @@ use Shpartko\Madsms\Contracts\GatewayInterface;
 use Shpartko\Madsms\Exceptions\GatewaysException;
 use Shpartko\Madsms\Madsms;
 
-
 /**
  * MadSMS final class for sending mesages - one instance provide all avaible gateways
  *
