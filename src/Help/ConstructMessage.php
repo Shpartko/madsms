@@ -3,8 +3,9 @@
 namespace Shpartko\Madsms\Help;
 
 use Shpartko\Madsms\Contracts\MessageInterface;
+use Shpartko\Madsms\Contracts\ReplyInterface;
 use Shpartko\Madsms\Traits\CheckMessage;
-use Shpartko\Madsms\Traits\ResultsOfProcessing;
+use Shpartko\Madsms\Help\MessageReply;
 
 /**
  * This class needs extend to all final message types
@@ -14,17 +15,17 @@ use Shpartko\Madsms\Traits\ResultsOfProcessing;
 abstract class ConstructMessage implements MessageInterface
 {
     use CheckMessage;
-	use ResultsOfProcessing;
 
     protected $phone;
     protected $message;
     protected $message_type;
+    protected $reply;
 
     public function __construct($phone, $message) {
     	$this->phone = $phone;
     	$this->message = $message;
-        $this->type = 'undefined';
-        $this->status = 'bad';
+
+        $this->reply = new MessageReply();
     }
 
     public function getPhone(): string {
@@ -36,10 +37,14 @@ abstract class ConstructMessage implements MessageInterface
     }
 
     public function getBase64(): string {
-        return null;
+        return '';
     }
 
     public function getMessageType(): string {
         return $this->message_type;
+    }
+
+    public function reply(): ReplyInterface {
+        return $this->reply;
     }
 }

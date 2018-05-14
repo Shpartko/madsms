@@ -6,6 +6,8 @@ namespace Shpartko\Madsms\Traits;
  * Class for save processing results into private $processing_results variable
  * and grant access to this results over magic methods.
  *
+ * !!! DON'T USE !!! REMOVED AFTER REFACTORING MessageInterface
+ *
  * @package Shpartko\Madsms
  */
 trait ResultsOfProcessing
