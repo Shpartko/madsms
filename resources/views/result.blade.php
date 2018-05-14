@@ -44,7 +44,7 @@
 						    	</span>
 						    </h6>
 						    <p class="card-text">
-						    	{{ $result->getMessage() }}
+						    	{{ $result->reply()->getMessage() }}
 						    </p>
 						  </div>
 						  <ul class="list-group list-group-flush">
