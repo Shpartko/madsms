@@ -4,6 +4,7 @@ namespace Shpartko\Madsms\Gateway;
 
 use Shpartko\Madsms\Contracts\GatewayInterface;
 use Shpartko\Madsms\Contracts\MessageInterface;
+use Shpartko\Madsms\Contracts\ReplyInterface;
 use Shpartko\Madsms\Help\ConstructGateway;
 use Shpartko\Madsms\Message;
 
@@ -23,18 +24,20 @@ final class Kyivstar extends ConstructGateway implements GatewayInterface {
 	public function send(MessageInterface $message): MessageInterface
 	{
 		if ($message instanceof Message) {
-			$message->type = 'standart';
-			$message->message = $message->getMessage();
-			$message->message_id = rand(11111111,999999999); // Message ID from mobile provider
-			$message->status = array_random(['send','fail']);
-			if (strlen($message->message)>$this->maximum_lenght_of_1sms) {
-				$message->parts = ceil(strlen($message->message)/$this->maximum_lenght_of_1sms);
-			}
+			$message->reply()
+				->setType(ReplyInterface::MESSAGE_TYPE_STANDART)
+				->setId(rand(11111111,999999999))
+				->setMessage($message->getMessage())
+				->setResult(array_random([ReplyInterface::MESSAGE_SEND, ReplyInterface::MESSAGE_FAIL]));
+
+				if (strlen($message->getMessage())>$this->maximum_lenght_of_1sms)
+					$message->reply()
+						->setParts(ceil(strlen($message->getMessage())/$this->maximum_lenght_of_1sms));
 		} else {
-			$message->type = 'unconventional';
-			$message->message = $message->getMessage();
-			$message->message_id = null;
-			$message->status = 'fail';
+			$message->reply()
+				->setType(ReplyInterface::MESSAGE_TYPE_EXTENDED)
+				->setMessage($message->getMessage())
+				->setResult(ReplyInterface::MESSAGE_FAIL);
 		}
 
 		return $message;
