@@ -2,11 +2,7 @@
 
 Route::get('madsms/{new_limit?}', function($new_limit = null){
     $mad = \App::make('madsms');
-    $max = config('madsms.limit_for_one_iteration',0);
-
-    if (($new_limit) and ($new_limit<101) and ($new_limit>0)) $max = $new_limit;
-
-    $results = $mad->sendPool(getTestData($max));
+    $results = $mad->sendPool(getTestData($new_limit));
 
     return view('madsms::result', [
         'results' => $results,
@@ -16,11 +12,7 @@ Route::get('madsms/{new_limit?}', function($new_limit = null){
 
 Route::get('supermadsms/{new_limit?}', function($new_limit = null){
     $mad = \App::make('supermadsms');
-    $max = config('madsms.limit_for_one_iteration',0);
-
-    if (($new_limit) and ($new_limit<101) and ($new_limit>0)) $max = $new_limit;
-
-    $results = $mad->sendPool(getTestData($max));
+    $results = $mad->sendPool(getTestData($new_limit));
 
     return view('madsms::result', [
         'results' => $results,
@@ -28,7 +20,10 @@ Route::get('supermadsms/{new_limit?}', function($new_limit = null){
 })->where(['new_limit' => '[0-9]+'])->name('supermadsms');
 
 
-function getTestData($max) {
+function getTestData($new_limit) {
+    $max = config('madsms.limit_for_one_iteration',0);
+    if (($new_limit) and ($new_limit<101) and ($new_limit>0)) $max = $new_limit;
+
     $pool = [];
 
     $faker = \Faker\Factory::create();
@@ -37,12 +32,12 @@ function getTestData($max) {
         if (rand(0,1)==1) {
             $pool[] = new Shpartko\Madsms\Message(
                 $faker->e164PhoneNumber(),
-                $faker->text(200)
+                $faker->text(rand(100,300))
             );
         } else {
             $pool[] = new Shpartko\Madsms\MMS(
                 $faker->e164PhoneNumber(),
-                $faker->text(200),
+                $faker->text(rand(100,300)),
                 $faker->imageUrl()
             );
         }
