@@ -5,8 +5,8 @@ It's an implementation of test case for checking basics `PHP`/`Laravel`/`MVC`/`O
 
 Send sms/mms via random providers.
 
-**Madsms** - One random gateway for one request
-**SuperMadsms** - All gateways for one request
+* **Madsms** - One random gateway for one request;
+* **SuperMadsms** - All gateways for one request.
 
 ## Install:
 
@@ -65,7 +65,7 @@ SuperMadsms::getRandomGateway()->getGatewayName();
 
 ## Usage:
 
-For get results of working this package, please, pick one of this url: `http(s)://your-domain/madsms` and `http(s)://your-domain/supermadsms`.
+For get results of working this package, please, pick one of this url: `http(s)://your-domain/madsms` or `http(s)://your-domain/supermadsms`.
 
 For example: [http://localhost/madsms](http://localhost/madsms) or [http://localhost/supermadsms](http://localhost/supermadsms)
 
