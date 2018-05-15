@@ -1,12 +1,12 @@
 # madsms
 
 Hi there!
-It's an implementation of test case for checking basics laravel skills.
+It's an implementation of test case for checking basics `PHP`/`Laravel`/`MVC`/`OOP` skills.
 
 Send sms/mms via random providers.
 
-Madsms - One random gateway for one request
-SuperMadsms - All gateways for one request
+**Madsms** - One random gateway for one request
+**SuperMadsms** - All gateways for one request
 
 ## Install:
 
@@ -26,6 +26,16 @@ composer require shpartko/madsms
 
 That's all. The package will automatically register itself.
 
+## Notifications (E-mail/Slack):
+
+If you want use notifications, you must install the Guzzle HTTP library via Composer:
+
+```bash
+composer require guzzlehttp/guzzle
+```
+
+And after that you must config notifications section in your `config/madsms.php` and MAIL section in `.env` file.
+
 ## Implement:
 
 You can publish the config, lang and views files with:
@@ -36,7 +46,7 @@ php artisan vendor:publish --provider="Shpartko\Madsms\MadServiceProvider"
 
 ## Facade
 
-You can register MadSMS facades in your config\app.php in aliases section:
+You can register MadSMS facades in your `config\app.php` in aliases section:
 
 ```
     'aliases' => [
@@ -55,13 +65,7 @@ SuperMadsms::getRandomGateway()->getGatewayName();
 
 ## Usage:
 
-For get results of working this package, please, pick one of this url:
-
-```
-http(s)://your-domain/madsms
-and
-http(s)://your-domain/supermadsms
-```
+For get results of working this package, please, pick one of this url: `http(s)://your-domain/madsms` and `http(s)://your-domain/supermadsms`.
 
 For example: [http://localhost/madsms](http://localhost/madsms) or [http://localhost/supermadsms](http://localhost/supermadsms)
 
@@ -73,3 +77,9 @@ php artisan route:clear
 php artisan config:clear
 php artisan clear-compiled
 ```
+
+## If you want hire me, mail:
+
+* [3300101(at)gmail.com](mailto:3300101@gmail.com)
+* [LinkedIn](https://www.linkedin.com/in/shpartko/)
+* [Facebook](https://www.facebook.com/sheppardjack)
