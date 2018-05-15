@@ -2,6 +2,7 @@
 
 namespace Shpartko\Madsms\Exceptions;
 
+use Shpartko\Madsms\Contracts\GatewayInterface;
 use Exception;
 
 class GatewaysException extends Exception
@@ -11,9 +12,9 @@ class GatewaysException extends Exception
         return new static(__('madsms::msg.error-load-config'));
     }
 
-    public static function cannot_connect($gateway)
+    public static function cannot_connect(GatewayInterface $gateway)
     {
-        return new static(__('madsms::msg.error-cannot-connect',['gateway' => $gateway]));
+        return new static(__('madsms::msg.error-cannot-connect',['gateway' => $gateway->getGatewayName()]));
     }
 
     public static function no_one_gateway_for_load()
