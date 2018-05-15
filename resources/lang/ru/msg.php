@@ -17,4 +17,5 @@ return [
     'error-load-config' => 'Не могу загрузить конфигурацию для работы MadSMS.',
     'error-cannot-connect' => 'Не могу соединиться со шлюзом :gateway для отправки SMS через MadSMS.',
     'error-no-one-gateway-for-load' => 'Не могу загрузить ни один шлюз для работы SuperMadSMS',
+    'error-send-notifications' => 'Отсутствует связанный клас для оповещения о событии :eventClass. Пожалуйста, сконфигурируйте секцию madsms.notifications.notifications и создайте класс для оповещения об этом событии.',
 ];

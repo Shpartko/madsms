@@ -17,4 +17,5 @@ return [
     'error-load-config' => 'Cannot load MadSMS config.',
     'error-cannot-connect' => 'Cannot connect to :gateway gateway.',
     'error-no-one-gateway-for-load' => 'Cannot load gateways for SuperMadSMS',
+    'error-send-notifications' => 'There is no notification class that can handle event :eventClass. Please, config section madsms.notifications.notifications and create notifycation for this event.',
 ];
