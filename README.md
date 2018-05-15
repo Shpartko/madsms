@@ -69,6 +69,8 @@ For get results of working this package, please, pick one of this url: `http(s):
 
 For example: [http://localhost/madsms](http://localhost/madsms) or [http://localhost/supermadsms](http://localhost/supermadsms)
 
+Or you can see how it's work on my domain: [madsms](https://3300101.pp.ua/madsms) and [supermadsms](https://3300101.pp.ua/supermadsms).
+
 ## Clear cache
 
 ```bash
