@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Shpartko\Madsms\Madsms;
 use Shpartko\Madsms\SuperMadsms;
 use Shpartko\Madsms\Exceptions\GatewaysException;
+use Shpartko\Madsms\Notifications\EventHandler;
 use Route;
 
 /**
@@ -58,6 +59,7 @@ class MadServiceProvider extends ServiceProvider
         $this->app->singleton('supermadsms', function ($app) {
             return new SuperMadsms(config('madsms.gateways'));
         });
+        $this->app['events']->subscribe(EventHandler::class);
         $this->app->alias('madsms', Madsms::class);
         $this->app->alias('supermadsms', SuperMadsms::class);
     }
