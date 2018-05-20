@@ -18,15 +18,13 @@ class MessageReply implements ReplyInterface
     private $message;
     private $parts;
 
-    private $gateway_name;
-    private $gateway_logo;
+    private $gateway;
 
     private $result = ReplyInterface::MESSAGE_UNPROCESSED;
 
     public function setGateway(GatewayInterface $gateway)
     {
-        $this->gateway_name = $gateway->getGatewayName();
-        $this->gateway_logo = $gateway->getGatewayLogo();
+        $this->gateway = $gateway;
     	return $this;
     }
 
@@ -85,14 +83,19 @@ class MessageReply implements ReplyInterface
     	return $this->result;
     }
 
+    public function getGateway()
+    {
+        return $this->gateway;
+    }
+
     public function getGatewayName()
     {
-    	return $this->gateway_name;
+    	return $this->gateway->getGatewayName();
     }
 
     public function getGatewayLogo()
     {
-    	return $this->gateway_logo;
+    	return $this->gateway->getGatewayLogo();
     }
 
 
