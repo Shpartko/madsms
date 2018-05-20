@@ -21,4 +21,9 @@ class GatewaysException extends Exception
     {
         return new static(__('madsms::msg.error-no-one-gateway-for-load'));
     }
+
+    public static function method_not_declared($methodName, $gatewayName)
+    {
+        return new static(__('madsms::msg.error-method-not-declared', compact('methodName', 'gatewayName')));
+    }
 }

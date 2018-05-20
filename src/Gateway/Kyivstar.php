@@ -21,7 +21,7 @@ final class Kyivstar extends ConstructGateway implements GatewayInterface {
 	protected $logo = 'https://www.utransto.com/images/mno/kyivstar_ukraine.png';
 	private $maximum_lenght_of_1sms = 100;
 
-	public function send(MessageInterface $message): MessageInterface
+	protected function send(MessageInterface $message): MessageInterface
 	{
 		if ($message instanceof Message) {
 			$message->reply()

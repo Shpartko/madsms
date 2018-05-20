@@ -19,7 +19,7 @@ final class Vodafone extends ConstructGateway implements GatewayInterface {
 	protected $name = 'Vodafone (MTS) UKR';
 	protected $logo = 'https://i.forbesimg.com/media/lists/companies/vodafone_416x416.jpg';
 
-	public function send(MessageInterface $message): MessageInterface
+	protected function send(MessageInterface $message): MessageInterface
 	{
 		if ($message instanceof Message) {
 			$message->reply()

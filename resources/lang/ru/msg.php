@@ -18,4 +18,5 @@ return [
     'error-cannot-connect' => 'Не могу соединиться со шлюзом :gateway для отправки SMS через MadSMS.',
     'error-no-one-gateway-for-load' => 'Не могу загрузить ни один шлюз для работы SuperMadSMS',
     'error-send-notifications' => 'Отсутствует связанный клас для оповещения о событии :eventClass. Пожалуйста, сконфигурируйте секцию madsms.notifications.notifications и создайте класс для оповещения об этом событии.',
+    'error-method-not-declared' => 'Метод :methodName не реализован в классе шлюза :gatewayName! Вам нужно реализовать этот метод!',
 ];

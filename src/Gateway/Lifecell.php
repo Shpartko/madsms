@@ -21,7 +21,7 @@ final class Lifecell extends ConstructGateway implements GatewayInterface {
 	protected $logo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3xhYmO9yH1wYUDkU3SuR6Ksy2JLnU_VELJ4wPcwVNyf4a2d0_';
 	private $maximum_lenght_of_1sms = 50;
 
-	public function send(MessageInterface $message): MessageInterface
+	protected function send(MessageInterface $message): MessageInterface
 	{
 		if ($message instanceof Message) {
 			$message->reply()
