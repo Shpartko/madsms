@@ -6,6 +6,7 @@ use Shpartko\Madsms\Contracts\MessageInterface;
 use Shpartko\Madsms\Contracts\ReplyInterface;
 use Shpartko\Madsms\Traits\CheckMessage;
 use Shpartko\Madsms\Help\MessageReply;
+use Shpartko\Madsms\Traits\SendNotification;
 
 /**
  * This class needs extend to all final message types
@@ -15,6 +16,7 @@ use Shpartko\Madsms\Help\MessageReply;
 abstract class ConstructMessage implements MessageInterface
 {
     use CheckMessage;
+    use SendNotification;
 
     protected $phone;
     protected $message;

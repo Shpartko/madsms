@@ -9,7 +9,8 @@ use Shpartko\Madsms\Exceptions\GatewaysException;
 use Shpartko\Madsms\Events\CannotConnectToGateway;
 use Shpartko\Madsms\Events\MessageWasSend;
 use Shpartko\Madsms\Events\MessageCannotSend;
-use Shpartko\Madsms\Events\MessageIncorrect;
+use Shpartko\Madsms\Traits\SendNotification;
+
 use Log;
 
 /**
@@ -18,13 +19,13 @@ use Log;
  * @package Shpartko\Madsms
  */
 final class Madsms {
+	use SendNotification;
+
     private $gateway;
-    private $sendNotifications;
 
     public function __construct(GatewayInterface $gateway)
     {
         $this->gateway = $gateway;
-        $this->sendNotifications = config('madsms.notifications.send');
 
         // Make throw exception for 1 of 4 times (for tests in dev mode)
         if ((env('APP_ENV')!='production') && (rand(0,3)==0)) {
@@ -45,28 +46,19 @@ final class Madsms {
 
     public function send(MessageInterface $message): MessageInterface
     {
-        $message->reply()->setGateway($this->gateway);
+        $this->gateway->sendMessage($message);
 
-        if (($message->isCorrectMessage()) and ($this->gateway->isCorrectMessage($message))) {
-            $this->gateway->send($message);
-
-            if ($message->reply()->getResult() == ReplyInterface::MESSAGE_SEND) {
-                $this->sendNotification(new MessageWasSend($this->gateway, $message));
-                Log::debug('MadSMS to '.$message->getPhone(), [
-                    'provider' => $this->gateway->getGatewayName(),
-                    'id' => $message->reply()->getId(),
-                ]);
-            } else {
-                $this->sendNotification(new MessageCannotSend($this->gateway, $message));
-                Log::warning('MadSMS to '.$message->getPhone().' not sended', [
-                    'provider' => $this->gateway->getGatewayName(),
-                    'id' => $message->reply()->getId(),
-                ]);
-            }
+        if ($message->reply()->getResult() == ReplyInterface::MESSAGE_SEND) {
+            $this->sendNotification(new MessageWasSend($this->gateway, $message));
+            Log::debug('MadSMS to '.$message->getPhone(), [
+                'provider' => $message->reply()->getGatewayName(),
+                'id' => $message->reply()->getId(),
+            ]);
         } else {
-            $this->sendNotification(new MessageIncorrect($this->gateway, $message));
-            Log::error('Cannot send madSMS to '.$message->getPhone().' - wrong format or incorrect phone number', [
-                'provider' => $this->gateway->getGatewayName(),
+            $this->sendNotification(new MessageCannotSend($this->gateway, $message));
+            Log::warning('MadSMS to '.$message->getPhone().' not sended', [
+                'provider' => $message->reply()->getGatewayName(),
+                'id' => $message->reply()->getId(),
             ]);
         }
 
@@ -76,12 +68,5 @@ final class Madsms {
     public function getGateway(): GatewayInterface
     {
         return $this->gateway;
-    }
-
-    private function sendNotification($notification)
-    {
-        if ($this->sendNotifications) {
-            event($notification);
-        }
     }
 }
