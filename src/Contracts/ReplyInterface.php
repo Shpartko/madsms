@@ -19,6 +19,7 @@ interface ReplyInterface {
 	const MESSAGE_TYPE_EXTENDED = 2;
 
 	public function setGateway(GatewayInterface $gateway);
+    public function getGateway();
 
     public function setId(int $id);
     public function setMessage(string $message);
