@@ -9,6 +9,8 @@
   <body>
   	<style type="text/css">
   		.provider_logo { width:25px; float: right; }
+  		.opacity-50 { opacity:0.5; }
+  		.opacity-50:hover { opacity:1; }
   	</style>
 
     <h1 class="text-center mt-3 mb-3">@lang('madsms::msg.h1')</h1>
@@ -32,7 +34,7 @@
 			@else
 				@foreach($results as $result)
 					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
-						<div class="card mb-3">
+						<div class="card mb-3 @if($result->reply()->getResult()!=1) opacity-50 @endif">
 						  <div class="card-body">
 						    <h5 class="card-title">
 						    	{{ $result->getPhone() }}
